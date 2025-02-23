@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrusel de Imágenes</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .carousel {
+            position: relative;
+            width: 400px;
+            height: 300px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+        }
+        .carousel img {
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .carousel img.active {
+            opacity: 1;
+        }
+        .controls {
+            margin-top: 10px;
+        }
+        .controls button {
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .back-button {
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="carousel">
+        <img src="ejercicio1.jfif" class="active" alt="Imagen 1">
+        <img src="ejercicio2.jpg" alt="Imagen 2">
+        <img src="ejercicio3.jfif" alt="Imagen 3">
+    </div>
+    <div class="controls">
+        <button onclick="prevImage()">&#10094; Anterior</button>
+        <button onclick="nextImage()">Siguiente &#10095;</button>
+    </div>
+    <button class="back-button" onclick="goBack()">Volver a Inicio</button>
+    
+    <script>
+        let index = 0;
+        const images = document.querySelectorAll('.carousel img');
+        function showImage(i) {
+            images.forEach(img => img.classList.remove('active'));
+            images[i].classList.add('active');
+        }
+        function nextImage() {
+            index = (index + 1) % images.length;
+            showImage(index);
+        }
+        function prevImage() {
+            index = (index - 1 + images.length) % images.length;
+            showImage(index);
+        }
+        setInterval(nextImage, 3000);
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

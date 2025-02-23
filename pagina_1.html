@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cambiar Color de Fondo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f0f0;
+        }
+
+        #target-element {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid #ccc;
+            border-radius: 5px;
+            transition: background-color 0.5s ease;
+        }
+
+        .target-style {
+            background-color: #ffffff;
+        }
+
+        .button {
+            padding: 10px 20px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+            transition: background-color 0.3s ease;
+            margin: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div id="target-element" class="target-style">Este es el elemento cuyo color de fondo cambiará.</div>
+    <button id="change-color-button" class="button">Cambiar Color de Fondo</button>
+    <button id="go-back-button" class="button">Listado de ejercicios</button>
+
+    <script>
+        document.getElementById('change-color-button').addEventListener('click', function() {
+            var targetElement = document.getElementById('target-element');
+            var currentColor = targetElement.style.backgroundColor;
+            
+            if (currentColor === 'rgb(255, 255, 255)' || currentColor === '') {
+                targetElement.style.backgroundColor = '#ffcccb'; 
+            } else {
+                targetElement.style.backgroundColor = '#ffffff'; 
+            }
+        });
+
+        document.getElementById('go-back-button').addEventListener('click', function() {
+            window.location.href = 'index.html';
+        });
+    </script>
+</body>
+</html>

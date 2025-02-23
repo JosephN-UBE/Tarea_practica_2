@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reloj Analógico</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f0f0f0;
+            margin: 0;
+        }
+        .clock {
+            position: relative;
+            width: 300px;
+            height: 300px;
+            background: #fff url('clock-face.png') no-repeat center center;
+            background-size: cover;
+            border: 10px solid #333;
+            border-radius: 50%;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+        .hand {
+            position: absolute;
+            width: 50%;
+            height: 6px;
+            background: black;
+            top: 50%;
+            transform-origin: 100%;
+            transform: rotate(90deg);
+            transition: transform 0.05s cubic-bezier(0.4, 2.3, 0.3, 1);
+        }
+        .hour {
+            height: 8px;
+            background: #333;
+        }
+        .minute {
+            height: 6px;
+            background: #666;
+        }
+        .second {
+            height: 4px;
+            background: red;
+        }
+        .back-button {
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 1em;
+            border-radius: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: background 0.3s ease;
+        }
+        .back-button:hover {
+            background: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="clock">
+        <div id="hour" class="hand hour"></div>
+        <div id="minute" class="hand minute"></div>
+        <div id="second" class="hand second"></div>
+    </div>
+    <button class="back-button" onclick="goBack()">Volver a Inicio</button>
+    
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const hours = now.getHours() % 12;
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            
+            const hourDeg = (360 / 12) * hours + (30 / 60) * minutes;
+            const minuteDeg = (360 / 60) * minutes + (6 / 60) * seconds;
+            const secondDeg = (360 / 60) * seconds;
+            
+            document.getElementById('hour').style.transform = `rotate(${hourDeg}deg)`;
+            document.getElementById('minute').style.transform = `rotate(${minuteDeg}deg)`;
+            document.getElementById('second').style.transform = `rotate(${secondDeg}deg)`;
+        }
+        
+        setInterval(updateClock, 1000);
+        updateClock();
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

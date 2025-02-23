@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Imagen con Cambio al Pasar el Ratón</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            background-color: #f4f4f4;
+        }
+        .image-container img {
+            width: 300px;
+            height: auto;
+            transition: opacity 0.5s ease-in-out;
+        }
+        .back-button {
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            width: 200px;
+            text-align: center;
+            font-size: 1.2em;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="image-container">
+        <img id="image" src="imagen_1.jpg" alt="Imagen" 
+            onmouseover="changeImage()" onmouseout="restoreImage()">
+    </div>
+    <button class="back-button" onclick="goBack()">Volver a Inicio</button>
+    
+    <script>
+        function changeImage() {
+            document.getElementById('image').src = 'imagen_2.jfif';
+        }
+        function restoreImage() {
+            document.getElementById('image').src = 'imagen_1.jpg';
+        }
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+    </script>
+</body>
+</html>

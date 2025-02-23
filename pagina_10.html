@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Juego de Preguntas</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+        .question-container {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            width: 300px;
+        }
+        .options button {
+            display: block;
+            width: 100%;
+            margin: 5px 0;
+            padding: 10px;
+            background: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .back-button {
+            margin-top: 20px;
+            background: #007bff;
+            color: white;
+            padding: 10px;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <div class="question-container">
+        <p id="question">Pregunta aquí</p>
+        <div class="options">
+            <button onclick="checkAnswer(0)">Opción 1</button>
+            <button onclick="checkAnswer(1)">Opción 2</button>
+            <button onclick="checkAnswer(2)">Opción 3</button>
+            <button onclick="checkAnswer(3)">Opción 4</button>
+        </div>
+        <p id="score"></p>
+    </div>
+    <button class="back-button" onclick="goBack()">Volver a Inicio</button>
+    
+    <script>
+        const questions = [
+            { question: "¿Cuál es la capital de Francia?", options: ["Madrid", "París", "Roma", "Londres"], answer: 1 },
+            { question: "¿Cuánto es 2 + 2?", options: ["3", "4", "5", "6"], answer: 1 },
+            { question: "¿Cuál es el color del cielo?", options: ["Verde", "Azul", "Rojo", "Amarillo"], answer: 1 }
+        ];
+        let currentQuestion = 0;
+        let score = 0;
+        
+        function loadQuestion() {
+            document.getElementById("question").textContent = questions[currentQuestion].question;
+            document.querySelectorAll(".options button").forEach((button, index) => {
+                button.textContent = questions[currentQuestion].options[index];
+            });
+        }
+        
+        function checkAnswer(selected) {
+            if (selected === questions[currentQuestion].answer) {
+                score++;
+            }
+            currentQuestion++;
+            if (currentQuestion < questions.length) {
+                loadQuestion();
+            } else {
+                document.getElementById("question").textContent = "Juego terminado!";
+                document.querySelector(".options").style.display = "none";
+                document.getElementById("score").textContent = `Puntuación final: ${score}/${questions.length}`;
+            }
+        }
+        
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+        
+        loadQuestion();
+    </script>
+</body>
+</html>
